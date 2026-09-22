@@ -1,0 +1,15 @@
+# Defensive: never let credentials or personal family/work data into this repo.
+*service-account*.json
+*.pem
+*.key
+.env
+.env.*
+family/
+pod/memory/
+
+# Editor and OS junk
+.DS_Store
+*.swp
+*.swo
+__pycache__/
+*.pyc
