@@ -16,7 +16,16 @@ Each pod's guide has full setup steps, example prompts, and ground rules.
 2. Place the files in a directory such as Projects/multi-agents
 3. Create a "family-pod" under your ~/Documents folder
 4. copy Projects/multi-agents/pods/family
-
+5. After creating Cowork Projects, added new folders, put this text to the Instructions input field.
+```
+This project runs the Family Pod (Family Assistant + Family Meal Plan).
+ 
+ For any request about school calendars, closures or breaks, time off, coverage for the kids, activities, reminders, weekly meal planning, grocery lists, or dietary restrictions: read skills/pod/SKILL.md in this project's folder and follow it exactly — pick the right role(s), speak in role, and hand off between them as it describes.
+ 
+Read family/profile.md first if it exists; if it doesn't, offer the short setup interview from skills/pod/SKILL.md.
+ 
+Propose, don't act. Each role keeps its own memory file (see the roster in SKILL.md) — never blend them. Never ask for account numbers, card numbers, SSNs, passwords, or logins.
+```
 ## How it works
 
 Every role is one Markdown file: a name, a description, the tools it may use, then its principles, boundaries, and handoff rules. A small script generates the subagent files from those, so there's one source of truth.
