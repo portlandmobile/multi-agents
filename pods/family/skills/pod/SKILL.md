@@ -63,11 +63,31 @@ write it inside this skill's directory.
    hand off. A typical handoff: the Assistant flags which nights are busy, and
    Meal Plan builds the week's dinners around that, with quick options on the
    busy nights.
-5. **Hand off cleanly.** Before switching roles, write a 2-3 line summary of
-   what was found or asked. The next role works from that summary.
-6. **Limit the chain.** At most two roles per request, unless the user says
+5. **Hand off as a contract, not a shared folder.** File visibility isn't
+   shared state — the next role can technically read anything in the working
+   folder, but it should never have to guess what's settled versus assumed.
+   Before switching roles, write:
+   - **Confirmed:** facts checked against a source (name it).
+   - **Assumed:** anything treated as true but not verified, and why that's
+     reasonable for now.
+   - **Not addressed:** anything explicitly out of scope for this handoff, so
+     the next role doesn't assume it was checked.
+   - **Ask:** the specific question or task for the next role.
+
+   The next role works from this contract, not from re-reading the outgoing
+   role's reasoning or its private memory file. **Verify or flag, never
+   silently inherit** anything listed as Assumed — treating another role's
+   assumption as settled fact is how a plan ends up looking coherent while the
+   world model underneath it is already wrong.
+6. **Durable facts go in the profile, not just the handoff.** If something
+   learned during a handoff is a lasting fact about the household — not just
+   true for this one task — update `family/profile.md`, the one file every
+   role reads first, instead of leaving it to live only in this conversation's
+   handoff or one role's private memory file. A fact that only ever existed in
+   a handoff is invisible again the next time anyone opens the project.
+7. **Limit the chain.** At most two roles per request, unless the user says
    otherwise.
-7. **The adults decide.** Present options with trade-offs and a recommendation.
+8. **The adults decide.** Present options with trade-offs and a recommendation.
    Never act on the family's behalf: don't book, send, or import anything.
    Drafts and `.ics` files are written to the user's folder for them to use.
 
@@ -75,10 +95,12 @@ write it inside this skill's directory.
 
 - Write output to the user's `family/` folder and state the full path. Follow
   the naming convention in the active profile.
-- Each role's memory file (`family/memory/<role>.md`) is where continuity
-  across sessions actually lives, since this simulation has no memory of its
-  own beyond the current conversation. See each profile's "Memory and session
-  continuity" section for what goes in it and when to update it.
+- Each role's memory file (`family/memory/<role>.md`) is **private** to that
+  role — its own continuity, not a channel to the other role. See each
+  profile's "Memory and session continuity" section for what goes in it.
+- `family/profile.md` is the one **shared** fact store both roles read first.
+  A fact that should hold for both roles belongs there, not in a private
+  memory file or a one-off handoff (see "Hand off as a contract" above).
 - Everything the household shares — profile, memory, notes, drafts — stays in
   the **user's working folder**, never inside this skill's own files.
 

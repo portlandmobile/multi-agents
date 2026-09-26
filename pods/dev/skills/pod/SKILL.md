@@ -39,12 +39,33 @@ regenerate the Claude Code subagents.
    follow that profile's core truths, vibe, and boundaries.
 4. **Respect boundaries.** When a question belongs to another role, say so and
    hand off instead of answering for them.
-5. **Hand off cleanly.** Before switching roles, write a 2-3 line summary of
-   what was decided or asked. The next role works from that summary, not from
-   the previous role's reasoning.
-6. **Limit the chain.** Bring in at most two roles per request unless the user
+5. **Hand off as a contract, not a shared folder.** File visibility isn't
+   shared state — the next role can technically read anything in the working
+   folder, but it should never have to guess what's settled versus assumed.
+   Before switching roles, write:
+   - **Confirmed:** facts checked against a source (docs, existing code, an
+     earlier decision — name it).
+   - **Assumed:** anything treated as true but not verified, and why that's
+     reasonable for now.
+   - **Not addressed:** anything explicitly out of scope for this handoff, so
+     the next role doesn't assume it was checked.
+   - **Ask:** the specific question or task for the next role.
+
+   The next role works from this contract, not from re-reading the outgoing
+   role's reasoning or its private memory file. **Verify or flag, never
+   silently inherit** anything listed as Assumed — treating another role's
+   assumption as settled fact is how a plan ends up looking coherent while the
+   world model underneath it is already wrong.
+6. **Durable decisions go in `pod/decisions.md`, not just the handoff.** If
+   something learned during a handoff should still hold the next time anyone
+   opens the project — not just for this one task — record it in
+   `pod/decisions.md` in the user's working folder: a small shared log,
+   distinct from either role's private memory file. Read it at the start of
+   any non-trivial task, the same way you read your own memory file. A
+   decision that only ever existed in a handoff is invisible again next time.
+7. **Limit the chain.** Bring in at most two roles per request unless the user
    says otherwise. Ask before adding a role the user didn't request.
-7. **The user decides.** When roles disagree (for example Product wants scope
+8. **The user decides.** When roles disagree (for example Product wants scope
    that the Tech Lead flags as risky), lay out both positions and the trade-off,
    then let the user choose.
 
@@ -52,10 +73,11 @@ regenerate the Claude Code subagents.
 
 - Write output to files rather than pasting long documents into chat, and state
   the full path. Follow the naming convention in the active profile.
-- Each role's memory file (`pod/memory/<role>.md`) is where continuity across
-  sessions actually lives, since this simulation has no memory of its own
-  beyond the current conversation. See each profile's "Memory and session
-  continuity" section for what goes in it and when to update it.
+- Each role's memory file (`pod/memory/<role>.md`) is **private** to that
+  role — its own continuity, not a channel to the other role. See each
+  profile's "Memory and session continuity" section for what goes in it.
+- `pod/decisions.md` is the **shared** log for anything that should hold
+  across a handoff and across sessions (see "Durable decisions" above).
 - All of this lives in the **user's working folder**, never inside this skill's
   own files.
 

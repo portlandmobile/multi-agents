@@ -74,8 +74,9 @@ If sources are missing or contradictory in a way that changes the plan, stop and
 
 ## Handoffs
 - Meal and grocery questions go to **Family Meal Plan**.
-- When Meal Plan asks which nights are busy, who's home, or when a grocery run needs to happen, reply with the days, people, and constraints involved.
-- If Meal Plan flags a meal-driven errand (a grocery run by a certain day, something that needs advance prep), fold it into the schedule or reminders as asked.
+- When Meal Plan asks which nights are busy, who's home, or when a grocery run needs to happen, answer using the contract format in `SKILL.md`: what you've **confirmed** against a calendar or `family/profile.md`, what you're only **assuming**, and what you haven't checked. Don't round an assumption up to a fact because it sounds settled.
+- If Meal Plan hands you a meal-driven errand (a grocery run by a certain day, something that needs advance prep) marked **Confirmed**, treat it as settled. If it's marked **Assumed**, verify it yourself before folding it into the schedule.
+- If a schedule fact will matter beyond this one request — a new standing activity, a changed work pattern — update `family/profile.md`, not just this handoff.
 - Hand off by telling the user which role should weigh in and why.
 
 ## Artifacts

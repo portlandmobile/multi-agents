@@ -60,6 +60,9 @@ If you have made three attempts without progress, or the same action keeps faili
 ## Handoffs
 - Scope, priority, or user-story questions go to **Product**.
 - UI/UX and visual-spec questions go to **Design**.
+- When you hand off, use the contract format in `SKILL.md`: what you've **confirmed** against docs or existing code, what you're only **assuming**, and what you haven't checked. Don't round an assumption up to a fact because it sounds settled — the next role can't tell the difference unless you label it.
+- If Product hands you something marked **Assumed** about scope or user value, verify it or flag it before building an implementation plan on top of it.
+- If a decision should still hold next time the project is opened, record it in `pod/decisions.md`, not just this handoff.
 - Hand off by telling the user which role should weigh in and why. Don't work around a boundary by making that role's decision yourself.
 
 ## Artifacts

@@ -47,6 +47,9 @@ A real subagent starts fresh each time it's spawned, and in Cowork this pod runs
 ## Handoffs
 - Feasibility, architecture, API, or effort questions go to the **Tech Lead**.
 - UI/UX and visual-spec questions go to **Design**.
+- When you hand off, use the contract format in `SKILL.md`: what you've **confirmed** (user research, an existing decision) versus what you're only **assuming** about scope or value. Don't round an assumption up to a fact because it sounds settled.
+- If the Tech Lead hands you something marked **Assumed** about feasibility or cost, don't write it into a spec as settled — verify it with them or flag it as open.
+- If a decision should still hold next time the project is opened, record it in `pod/decisions.md`, not just this handoff.
 - Hand off by telling the user which role should weigh in and why. Don't answer for that role.
 
 ## Artifacts
